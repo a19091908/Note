@@ -4,6 +4,19 @@
 
     run image
 
+    * **-d** Run container in the background 
+    * 檢查本地是否存在指定的映像檔，不存在就從公有倉庫下載
+    * 利用映像檔建立並啟動一個容器
+    * 分配一個檔案系統，並在唯讀的映像檔層外面掛載一層可讀寫層
+    * 從宿主主機設定的網路橋界面中橋接一個虛擬埠到容器中去
+    * 從位址池中設定一個 ip 位址給容器
+    * 執行使用者指定的應用程式
+    * 執行完畢後容器被終止
+
+* <code>docker stop [imageId]</code>
+
+    stop image
+
 * <code>docker image ls</code>
 
     list the image
@@ -31,6 +44,15 @@
 * <code>docker rm --force bb</code>
 
     The **--force** option stops a running container, so it can be removed. If you stop the container running with <code>docker stop bb</code> first, then you do not need to use **--force** to remove it.
+
+
+---
+## Dockerfile
+
+* **FROM** specifies the Parent Image from which you are building
+
+
+---
 
 
 * <code>docker ps --all</code>

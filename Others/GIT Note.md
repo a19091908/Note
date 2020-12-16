@@ -7,7 +7,13 @@
 
     -git diff --cached
 
-   show you any changes that you have added to the index
+    show you any changes that you have added to the index
+
+    -git diff --name-status [branch1] [branch2]
+
+    show the difference between branch1 and branch2.
+    It will list some types of differences: A, M, D, ...
+    A(added): there is not the file in branch1, but this file is in branch2
 
 * git add
 
