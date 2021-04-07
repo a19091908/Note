@@ -22,6 +22,7 @@
     list the image
 
 * <code>docker ps --all</code>
+* <code>docker ps -a</code>
 
     List the container (spawned by the image) which exits after displaying its message. 
 
@@ -45,6 +46,14 @@
 
     The **--force** option stops a running container, so it can be removed. If you stop the container running with <code>docker stop bb</code> first, then you do not need to use **--force** to remove it.
 
+* <code>docker start [container id]</code>
+
+    Start an existed container.
+
+* <code>docker exec -it [container id] /bin/bash</code>
+
+    Enter to the container with an interactive and tty (Teletypewriter, 終端) mode 
+
 
 ---
 ## Dockerfile
@@ -54,8 +63,3 @@
 
 ---
 
-
-* <code>docker ps --all</code>
-
-
-* <code>docker ps --all</code>
