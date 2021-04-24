@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>List Rendering</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+
+  <h3>List Rendering</h3>
+  <div id="app1">
+    <!-- render all values of the arrs -->
+    <p v-for="val in arrs">
+      {{ val }}  
+    </p>
+    <hr>
+    <!-- render all names and values of the arrs -->
+    <p v-for="(value, name) in arrs">
+      {{ name }} : {{ value }}     
+    </p>
+    <hr>
+    <!-- render all names, values, and index of the arrs -->
+    <p v-for="(value, name, index) in arrs">
+      {{ (index < 10) ? "0" + index : index }} {{ name }} : {{ value }}     
+    </p>
+    <hr>
+    <!-- render names and values in the order of name -->
+    <h4>Use v-bind:key to specify the key of the data</h4>
+    <p v-for="(val, name) in arrs2" v-bind:key="name">
+      {{name}} -> {{val}}
+    </p>
+    <hr>
+    <!-- Push a new object into the array3 -->
+    <p v-for="obj in arrs3" >
+      {{obj.name}}
+    </p>
+  </div>
+<hr>
+
+<h3>Code</h3>
+<textarea name="" id="" cols="100" rows="30" readonly>
+</textarea>
+
+  
+
+  <script>
+  var app1 = new Vue({
+    el: "#app1",
+    data: {
+      arrs: {
+        maggie: "1102",
+        justin: "0812"
+      },
+      arrs2: {
+        3: "3.justin",
+        10: "10.maggie",
+        1: "1.wu",
+        9: "9.chnag"
+      },
+      arrs3:[
+        {name: "Maggie"},
+        {name: "Justin"}
+      ]
+    }
+  });
+
+  // push a obj into arrs3
+  app1.arrs3.push({name:"Jimmy"});
+
+  </script>
+
+</body>
+</html>
