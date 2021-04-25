@@ -8,31 +8,63 @@
 
   <h3>List Rendering</h3>
   <div id="app1">
+
     <!-- render all values of the arrs -->
     <p v-for="val in arrs">
       {{ val }}  
     </p>
+
     <hr>
+
     <!-- render all names and values of the arrs -->
     <p v-for="(value, name) in arrs">
       {{ name }} : {{ value }}     
     </p>
+
     <hr>
+
     <!-- render all names, values, and index of the arrs -->
     <p v-for="(value, name, index) in arrs">
       {{ (index < 10) ? "0" + index : index }} {{ name }} : {{ value }}     
     </p>
+
     <hr>
+
     <!-- render names and values in the order of name -->
     <h4>Use v-bind:key to specify the key of the data</h4>
     <p v-for="(val, name) in arrs2" v-bind:key="name">
       {{name}} -> {{val}}
     </p>
+
     <hr>
+
     <!-- Push a new object into the array3 -->
     <p v-for="obj in arrs3" >
       {{obj.name}}
     </p>
+
+    <hr>
+
+    <!-- Render a range of value -->
+    <div><span v-for="n in 10">{{n}}</span></div>
+    
+    <hr>
+
+    <!-- Use template to render many elements in the v-for -->
+    <template v-for="(value, name) in arrs">
+      <div>Welcome</div>
+      <div>Name:<span>{{name}}</span> And Value:<span>{{value}}</span></div>
+    </template>
+
+    <hr>
+
+    <!-- Use for and if at the same time -->
+    <li v-for="toDo in toDoList" v-if="toDo.isCompleted == false">
+      {{toDo.name}}
+      {{toDo}}
+    </li>
+
+
   </div>
 <hr>
 
@@ -59,6 +91,12 @@
       arrs3:[
         {name: "Maggie"},
         {name: "Justin"}
+      ],
+      toDoList:[
+        {name: "plan a project", isCompleted: false},
+        {name: "write homework", isCompleted: false},
+        {name: "take a shower", isCompleted: true},
+        {name: "deposit money", isCompleted: true}
       ]
     }
   });
