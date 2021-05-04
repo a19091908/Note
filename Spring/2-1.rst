@@ -1,0 +1,24 @@
+<h3>2-1 Spring IOC</h3>
+* IOC Inversion of Control
+	Objects are controled by Spring container instead of programmers.
+* The advantages of IOC
+	1. Losse coupling
+	2. Lifecycle management
+	3. More testable
+
+<h3>2-2 Spring IOC and Bean</h3>
+* Bean
+	We call a object as a Bean if the object is created by Spring container.
+* @Component
+	* Target: Class
+	* Usage: Spring container will generate a object of the class marked as Component
+
+<h3>2-3 Autowire Bean</h3>
+* @Autowired
+	* Target: a variable of a class
+	* Usage: inject a bean into a variable whose class type is matched to bean type
+
+* @Qualifier
+	* Target: a variable of a class, always used with @Autowired
+	* Usage: indicate the bean name which you want to inject into the autowired variable.
+	
