@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Component</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+
+  <h3>Component</h3>
+  <!-- app1 -->
+  <div id="app1">
+    <blog-post 
+    v-for="post in posts" 
+    v-bind:key="post.id" 
+    v-bind:title="post.title">  
+    </blog-post> 
+  </div>
+  <script type="text/javascript">
+    // create a component
+    Vue.component("blog-post", {
+      props: ["title"],
+      template: "<div>{{title}}</div>"
+    });
+    // new a Vue instance
+    new Vue({
+      el:"#app1",
+      data:{
+        posts: [
+          { id: 2, title: '2. My journey with Vue' },
+          { id: 1, title: '1. Blogging with Vue' },
+          { id: 3, title: '3. Why Vue is so fun' }
+        ],
+        postFontSize: 1
+      } 
+    });
+  </script>
+
+
+  <!-- app2 -->
+  <hr>
+  <div id="app2">
+    <blog-post2 
+    v-for="post in posts" 
+    v-bind:key="post.id" 
+    v-bind:post="post">  
+    </blog-post2> 
+  </div>
+  <script type="text/javascript">
+    // create a component2
+    Vue.component("blog-post2", {
+      props: ["post"],
+      template: "<div>{{post.title}}</div>"
+    });
+    // new a Vue instance
+    new Vue({
+      el:"#app2",
+      data:{
+        posts: [
+          { id: 2, title: '2. My journey with Vue' },
+          { id: 1, title: '1. Blogging with Vue' },
+          { id: 3, title: '3. Why Vue is so fun' }
+        ],
+        postFontSize: 1
+      } 
+    });
+  </script>
+  <hr>
+
+
+  <!-- app3 -->
+  <div id="app3">
+    <div v-bind:style="{fontSize: postFontSize + 'em'}">
+      <blog-post3 
+      v-for="post in posts" 
+      v-bind:key="post.id" 
+      v-bind:post="post"
+      v-on:enlarge-text="enlargeText">  
+      </blog-post3> 
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    // create a component3
+    Vue.component("blog-post3", {
+      props: ["post"],
+      template: `<div><div>{{post.title}}</div><button v-on:click="$emit('enlarge-text', 0.1)">Enlarge Text</button><div v-html="post.content"></div></div>`
+    });
+    // new a Vue instance
+    new Vue({
+      el:"#app3",
+      data:{
+        posts: [
+          { id: 2, title: '2. My journey with Vue', content: `<span><div>My journey</div><div>with Vue</div></span>` },
+          { id: 1, title: '1. Blogging with Vue', content: `<span><div>Blogging</div><div>with Vue</div></span>` },
+          { id: 3, title: '3. Why Vue is so fun', content: `<span><div>Why Vue</div><div>is so fun</div></span>` }
+        ],
+        postFontSize: 1
+      },
+      methods: {
+        enlargeText: function(enlargeAmount){
+          this.postFontSize += enlargeAmount;
+        }
+      }
+    });
+  </script>
+  <hr>
+
+
+
+  <!-- app4 -->
+  <div id="app4">
+    <blog-post4 v-on:input="searchText = $event" v-bind:value="searchText" >
+    </blog-post4>
+    <div>{{searchText}}</div>
+  </div>
+  <script>
+    // create a component4
+    Vue.component("blog-post4", {
+      template: `<input v-on:input="$emit('input', $event.target.value)" />`
+    });
+
+    // new a Vue instance
+    new Vue({
+      el:"#app4",
+      data:{
+        searchText:"2"
+      }
+    });
+  </script>
+
+  <pre><code>
+  // HTML
+  &lt;div id="app4"&gt;
+    &lt;blog-post4 v-on:input="searchText = $event" v-bind:value="searchText" &gt;
+    &lt;/blog-post4&gt;
+    &lt;div&gt;{{searchText}}&lt;/div&gt;
+  &lt;/div&gt;
+
+  // JS
+  &lt;script&gt;
+    // create a component4
+    Vue.component("blog-post4", {
+      template: `&lt;input v-on:input="$emit('input', $event.target.value)" /&gt;`
+    });
+
+    // new a Vue instance
+    new Vue({
+      el:"#app4",
+      data:{
+        searchText:"2"
+      }
+    });
+  &lt;/script&gt;
+  </code></pre>
+
+  <hr>
+  <!-- app5 -->
+  <div id="app5">
+    <blog-post5 ></blog-post5>
+    <blog-post5 ></blog-post5>
+  </div>
+  <script>
+    // create a component5
+    Vue.component("blog-post5", {
+      data: function(){
+        return {
+          searchText : "2"
+        }
+      },
+      template: `<span><input v-bind:value="searchText" v-on:input="searchText=$event.target.value" /><div>{{searchText}}</div></span>`
+    });
+    
+    // new a Vue instance
+    new Vue({
+      el:"#app5"
+    });
+  </script>
+
+  <pre><code>
+  // HTML
+  &lt;div id="app5"&gt;
+    &lt;blog-post5 &gt;
+    &lt;/blog-post5&gt;
+  &lt;/div&gt;
+  
+  // JS
+  &lt;script&gt;
+    // create a component5
+    Vue.component("blog-post5", {
+      data: function(){
+        return {
+          searchText : "2"
+        }
+      },
+      template: `&lt;span&gt;&lt;input v-bind:value="searchText" v-on:input="searchText=$event.target.value" /&gt;&lt;div&gt;{{searchText}}&lt;/div&gt;&lt;/span&gt;`
+    });
+    
+    // new a Vue instance
+    new Vue({
+      el:"#app5"
+    });
+  &lt;/script&gt;
+  </code></pre>
+
+  <hr>
+
+  <!-- app6 -->
+  <div id="app6">
+    <blog-post6 v-bind:search-text="searchText" v-on:chg-val="inputChg($event)"></blog-post6>
+    <blog-post6 v-bind:search-text="searchText" v-on:chg-val="inputChg($event)"></blog-post6>
+  </div>
+  <script>
+    // create a component6
+    Vue.component("blog-post6", {
+      props:["searchText"],
+      template: `<span><input v-bind:value="searchText" v-on:input="$emit('chg-val', $event.target.value)" /><div>{{searchText}}</div></span>`
+    });
+    
+    // new a Vue instance
+    var app6 = new Vue({
+      el:"#app6",
+      data: {
+          searchText : "2"
+      },
+      methods:{
+        inputChg: function(chgVal){
+          this.searchText = chgVal;
+        }
+      }
+    });
+  </script>
+</body>
+</html>
